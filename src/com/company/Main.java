@@ -8,15 +8,15 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args) {
-        Gracz marcin = new Gracz("Marcin", 1000, "zielony", 0);
+        Gracz kamil = new Gracz("Kamil", 1000, "zielony", 0);
         Gracz michal = new Gracz("Michał", 4000, "niebieski", 3);
-        Gracz ada = new Gracz("Ada", 2000, "biały", 12);
-        Gracz ewa = new Gracz("Ewa", 3000, "czarny", 34);
+        Gracz klaudia = new Gracz("Klaudia", 2000, "różowy", 12);
+        Gracz kasia = new Gracz("Kasia", 3000, "czarny", 34);
         List<Gracz> gracze = new ArrayList<Gracz>();
-        gracze.add(marcin);
+        gracze.add(kamil);
         gracze.add(michal);
-        gracze.add(ada);
-        gracze.add(ewa);
+        gracze.add(klaudia);
+        gracze.add(kasia);
         Gra nowagra = new Gra(64, 24, "przykladKomentarza1",
                 true, gracze);
         nowagra.Start();
@@ -49,26 +49,26 @@ class Gra {
 
     public void Start() {
 
-        System.out.println("inicjacja graczy");
+        System.out.println("Inicjacja graczy");
         for (Gracz gracz : listaGraczy) {
-            System.out.println("Witaj w grze: " + gracz.imie + " twój pionek ma kolor " +
-                    gracz.pionek + " Stan twojego konta to: " + gracz.kasa + " Zaczynasz na polu: " +
+            System.out.println("Witaj w grze " + gracz.imie + " twój pionek ma kolor " +
+                    gracz.pionek + "." + " Stan twojego konta to: " + gracz.kasa + "." + " Zaczynasz na polu: " +
                     gracz.miejscePostoju);
         }
-        System.out.println("inicjacja talii kart");
+        System.out.println("Inicjacja talii kart");
         List<KartaNiespodzianka> kartaNiespodziankaList;
         List<KartaStandardowa> kartaStandardowaList;
         List<KartaProtokol> kartaProtokolList;
         List<KartaBazaDanych> kartaBazaDanychList;
-        System.out.println("inicjacja planszy");
+        System.out.println("Wirtualizacja planszy");
         Plansza plansza;
-        System.out.println("Start 1 rundy!!!");
+        System.out.println("START GRY !!!");
         for (Gracz gracz : listaGraczy) {
             Random generator = new Random();
             int oczko = generator.nextInt(12) + 1;
             gracz.miejscePostoju += oczko;
-            System.out.println("Rzuca gracz o imieniu: " + gracz.imie + " Wyrzucona ilość oczek to: " +
-                    oczko + " Gracz przesuwa sie na pole: " + gracz.miejscePostoju);
+            System.out.println("Rzuca gracz o imieniu: " + gracz.imie + "," + " wyrzucona ilość oczek to: " +
+                    oczko + "," + " Gracz przesuwa sie na pole: " + gracz.miejscePostoju);
         }
 
 
