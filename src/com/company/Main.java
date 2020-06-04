@@ -1,10 +1,25 @@
 package com.company;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import java.util.Scanner;
 
 public class Main {
 
     public static void main(String[] args) {
+        Gracz marcin = new Gracz("Marcin", 1000, "zielony", 0);
+        Gracz michal = new Gracz("Michał", 4000, "niebieski", 3);
+        Gracz ada = new Gracz("Ada", 2000, "biały", 12);
+        Gracz ewa = new Gracz("Ewa", 3000, "czarny", 34);
+        List<Gracz> gracze = new ArrayList<Gracz>();
+        gracze.add(marcin);
+        gracze.add(michal);
+        gracze.add(ada);
+        gracze.add(ewa);
+        Gra nowagra = new Gra(64, 24, "przykladKomentarza1",
+                true, gracze);
+        nowagra.Start();
 
     }
 }
@@ -14,30 +29,48 @@ class Gra {
     int iloscHoteli;
     String komentarz;
     boolean aktywnyGracz;
-    String listaGraczy;
+    List<Gracz> listaGraczy;
     String listaKartStandardowych;
     String listaKartProtokoły;
     String listaKartBazy;
     String listaKartSzansa;
     String ListaKartKasaSpoleczna;
 
+
     public Gra(int iloscDomkow, int iloscHoteli, String komentarz, boolean aktywnyGracz,
-               String listaGraczy, String listaKartStandardowych, String listaKartProtokoły,
-               String listaKartBazy, String listaKartSzansa, String ListaKartKasaSpoleczna) {
+               List<Gracz> listaGraczy) {
         this.iloscDomkow = iloscDomkow;
         this.iloscHoteli = iloscHoteli;
         this.komentarz = komentarz;
         this.aktywnyGracz = aktywnyGracz;
         this.listaGraczy = listaGraczy;
-        this.listaKartStandardowych = listaKartStandardowych;
-        this.listaKartProtokoły = listaKartProtokoły;
-        this.listaKartBazy = listaKartBazy;
-        this.listaKartSzansa = listaKartSzansa;
-        this.ListaKartKasaSpoleczna = ListaKartKasaSpoleczna;
+
     }
 
     public void Start() {
-        System.out.println("Gracz 1 rzuca koścmi");
+
+        System.out.println("inicjacja graczy");
+        for (Gracz gracz : listaGraczy) {
+            System.out.println("Witaj w grze: " + gracz.imie + " twój pionek ma kolor " +
+                    gracz.pionek + " Stan twojego konta to: " + gracz.kasa + " Zaczynasz na polu: " +
+                    gracz.miejscePostoju);
+        }
+        System.out.println("inicjacja talii kart");
+        List<KartaNiespodzianka> kartaNiespodziankaList;
+        List<KartaStandardowa> kartaStandardowaList;
+        List<KartaProtokol> kartaProtokolList;
+        List<KartaBazaDanych> kartaBazaDanychList;
+        System.out.println("inicjacja planszy");
+        Plansza plansza;
+        System.out.println("Start 1 rundy!!!");
+        for (Gracz gracz : listaGraczy) {
+            Random generator = new Random();
+            int oczko = generator.nextInt(12) + 1;
+            gracz.miejscePostoju += oczko;
+            System.out.println("Rzuca gracz o imieniu: " + gracz.imie + " Wyrzucona ilość oczek to: " +
+                    oczko + " Gracz przesuwa sie na pole: " + gracz.miejscePostoju);
+        }
+
 
     }
 
@@ -54,11 +87,18 @@ class Gra {
 
 }
 
-class Gracz  {
+class Gracz {
     String imie;
     double kasa;
     String pionek;
     int miejscePostoju;
+
+    Gracz(String imie, double kasa, String pionek, int miejscePostoju) {
+        this.imie = imie;
+        this.kasa = kasa;
+        this.pionek = pionek;
+        this.miejscePostoju = miejscePostoju;
+    }
 
 
     public void PrzesunGracza() {
@@ -88,7 +128,6 @@ class Gracz  {
         System.out.println("Z którym graczem chcesz handlować?");
         String handelOdp = handel.nextLine();
         System.out.println("Czy wybrany gracz akceptuje prośbe? (Y/N): ");
-
 
 
     }
@@ -184,6 +223,9 @@ class KartaStandardowa extends KartaWartosciowa {
 }
 
 class Plansza {
+    Pole pole;
+
+
     public void RysujPlansze() {
 
     }
