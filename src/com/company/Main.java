@@ -1,5 +1,7 @@
 package com.company;
 
+import java.util.Scanner;
+
 public class Main {
 
     public static void main(String[] args) {
@@ -17,41 +19,77 @@ class Gra {
     String listaKartProtokoły;
     String listaKartBazy;
     String listaKartSzansa;
-    String getListaKartKasaSpoleczna;
+    String ListaKartKasaSpoleczna;
+
+    public Gra(int iloscDomkow, int iloscHoteli, String komentarz, boolean aktywnyGracz,
+               String listaGraczy, String listaKartStandardowych, String listaKartProtokoły,
+               String listaKartBazy, String listaKartSzansa, String ListaKartKasaSpoleczna) {
+        this.iloscDomkow = iloscDomkow;
+        this.iloscHoteli = iloscHoteli;
+        this.komentarz = komentarz;
+        this.aktywnyGracz = aktywnyGracz;
+        this.listaGraczy = listaGraczy;
+        this.listaKartStandardowych = listaKartStandardowych;
+        this.listaKartProtokoły = listaKartProtokoły;
+        this.listaKartBazy = listaKartBazy;
+        this.listaKartSzansa = listaKartSzansa;
+        this.ListaKartKasaSpoleczna = ListaKartKasaSpoleczna;
+    }
 
     public void Start() {
+        System.out.println("Gracz 1 rzuca koścmi");
 
     }
 
     public void GameOver() {
 
+        System.out.println("Wygrywa gracz ");
+
     }
 
     public void WypiszKomentarz() {
+        System.out.println("Komentarz");
 
     }
 
 }
 
-class Gracz {
+class Gracz  {
     String imie;
     double kasa;
     String pionek;
     int miejscePostoju;
 
+
     public void PrzesunGracza() {
+
 
     }
 
     public void ZastawKarte() {
+        Scanner wpisz = new Scanner(System.in);
+        System.out.println("Podaj nazwe karty do zastawienia");
+        String nameTheCard = wpisz.nextLine();
+        System.out.println("Karte zastawiono, pieniądze na koncie");
+
 
     }
 
     public void WykupKarte() {
+        Scanner wykup = new Scanner(System.in);
+        System.out.println("Podaj nazwe karty, którą chcesz wykupić");
+        String nameTheCard2 = wykup.nextLine();
+        System.out.println("Karte wykupiono, pieniądze sciągnięte z konta");
 
     }
 
     public void Handluj() {
+        Scanner handel = new Scanner(System.in);
+        System.out.println("Z którym graczem chcesz handlować?");
+        String handelOdp = handel.nextLine();
+        System.out.println("Czy wybrany gracz akceptuje prośbe? (Y/N): ");
+
+
 
     }
 
@@ -83,9 +121,10 @@ class Gracz {
 
     }
 
+
 }
 
-abstract class Karta <Gra> {
+abstract class Karta {
     String nazwa;
 
 }
@@ -103,10 +142,11 @@ abstract class KartaWartosciowa extends Karta {
     double wartoscZestawu;
     String wlasciciel;
 
-    private void CzyZastawiona(){
+    private void CzyZastawiona() {
 
     }
-    private void ZastawKarte(boolean i){
+
+    private void ZastawKarte(boolean i) {
 
     }
 
@@ -117,7 +157,7 @@ class KartaProtokol extends KartaWartosciowa {
     double oplataZa2Karty;
     double oplataZa3Karty;
     double oplataZa4Karty;
-    int logo;
+    Object logo;
 
 }
 
@@ -141,24 +181,35 @@ class KartaStandardowa extends KartaWartosciowa {
     int iloscZabudowy;
 
 
-
 }
-class Plansza <Gra> {
-    public void RysujPlansze(){
+
+class Plansza {
+    public void RysujPlansze() {
 
     }
+
     public void PokazSzczegolowaKarte() {
+        Scanner szczegol = new Scanner(System.in);
+        System.out.println("Podaj nazwe karty");
+        String szc = szczegol.nextLine();
+        System.out.println("Karta: " + szc);
 
     }
+
     public void WypiszKomentarz() {
+        Scanner komentarz = new Scanner(System.in);
+        System.out.println("Wpisz komentarz");
+        String kom = komentarz.nextLine();
+        System.out.println("Komentarz: " + kom);
 
     }
 }
-class Pole <Plansza> {
+
+class Pole {
     int numer;
     int lokalizajca;
     int ulozenie;
-    int logo;
+    Object logo;
     int rodzajPola;
 }
 
